@@ -95,3 +95,14 @@ go test ./pkg/api/resource/... -v -run TestMustParse
 ```
 
 All existing tests must pass. `TestMustParseNearMaxInt64` must pass green.
+
+```bash
+Just opened my first contribution to the Kubernetes project.
+I fixed a silent integer overflow bug in resource.MustParse, a core function that Kubernetes uses everywhere to parse CPU, memory and storage values.
+The bug was simple but dangerous — if you passed a value larger than math.MaxInt64, the function would return wrong data with no error and no warning. Just incorrect numbers flowing silently into your cluster resource calculations.
+The fix adds two overflow guards that catch both ways this overflow can happen, and forces an immediate panic with a clear message instead of letting bad data propagate.
+PR kubernetes/kubernetes #135487 — sig/api-machinery, kind/bug.
+This is my first time actually reading and modifying the Kubernetes source code rather than just operating it. There is a real difference between knowing how to use a tool in production and understanding how it works internally. This was a good reminder of that.
+For any DevOps or platform engineer who has never contributed to open source — the barrier is lower than it looks. Find a good first issue, read the surrounding code carefully, and just start. The hardest part is the first commit.
+#Kubernetes #OpenSource #DevOps #CloudNative #Golang #CNCF #Infrastructure
+```
